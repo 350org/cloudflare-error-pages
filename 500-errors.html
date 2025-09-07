@@ -2,33 +2,235 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>500 Internal Server Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Temporarily Unavailable - 350</title>
     <style>
+      @font-face {
+        font-family: "Permanent Marker";
+        font-style: normal;
+        font-weight: 400;
+        src: url("https://fonts.gstatic.com/s/permanentmarker/v16/Fh4uPib9Iyv2ucM6pGQMWimMp004La2Cf5b6jlg.woff2")
+          format("woff2");
+      }
       body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 50px;
-        background: #f8f8f8;
-        color: #333;
+        background: url(https://s3.amazonaws.com/s3.350.org/images/bg.jpg)
+          repeat fixed center center #087dae;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        color: #313a42;
+        font-family: ff-din-round-web-pro-1, ff-din-round-web-pro-2, Tahoma,
+          sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
       }
-      p {
-        font-size: 16px;
+      .box {
+        margin: 13px 10px;
+        padding: 25px;
+        padding-top: 30px;
+        background: #fff;
+        background: rgba(255, 255, 255, 0.9);
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 3px 3px 3px 3px;
       }
-      .info {
-        font-size: 12px;
-        color: #666;
-        margin-top: 20px;
+      h1 {
+        font-family: "Permanent Marker", ff-din-round-web-pro-1,
+          ff-din-round-web-pro-2, sans-serif;
+        text-transform: capitalize;
+        letter-spacing: -0.05em;
+        line-height: 1.1;
+        font-weight: normal;
+        display: block;
+        font-size: 60px;
+        margin-bottom: 12px;
+        position: relative;
+        top: -0.15em;
+      }
+      h2 {
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        line-height: 1.2;
+        text-transform: uppercase;
+        font-size: 24px;
+      }
+
+      .socials {
+        display: flex;
+        padding: 0;
+        margin: 30px 0;
+        gap: 15px;
+      }
+
+      .socials li {
+        list-style-type: none;
+      }
+
+      .socials li a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 7px 7px;
+        border-radius: 8px;
+      }
+      .bg-bluesky-icon {
+        background-color: #1185fe;
+      }
+      .bg-facebook-icon {
+        background-color: #1877f2;
+      }
+      .bg-instagram-icon {
+        background: linear-gradient(
+          45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%
+        );
+      }
+      .bg-youtube-icon {
+        background-color: #ff0000;
+      }
+      .logo {
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMiIgYmFzZVByb2ZpbGU9InRpbnkiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgoJIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjUxLjMgMTA4LjciIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik04OC44LDUyLjdjNi44LTcuMSw5LjMtMTYuOCw3LjgtMjYuM2MtMS42LTkuNy04LjEtMTcuOS0xNy4xLTIyLjFDNzAuNSwwLDU2LjksMC4zLDQ5LDQuMwoJCWMtNy45LDQuMS0xNC4xLDEzLjktMTUuMywxNS42Yy0wLjUsMC43LTAuMywxLjksMC41LDIuNmMxLjMsMS4xLDkuMiw4LjEsMTEuNyw5LjljMS4zLDAuOSwyLjQsMC45LDMuNi0wLjRjMS42LTEuNiw0LjYtNSw2LjMtNi41CgkJYzIuNS0yLjEsNS43LTIuOCw3LjctMi44YzQuNywwLDguNiwyLjEsMTAuMSw2LjJjMS40LDMuOCwwLjQsOC43LTMuMSwxMWMtMi44LDEuOS03LjgsMi43LTEwLjksMy4yYy00LjQsMC42LTQuNSwyLjQtNC43LDQKCQljLTAuMywyLjgtMC40LDguNC0wLjIsMTEuOGMwLjIsMi42LDMuMywzLjUsNi4zLDMuOWMzLDAuNSw1LjQsMC40LDgsMS40YzQuNCwxLjYsNi44LDcsNi4xLDExLjVjLTAuNyw0LjYtNC45LDcuNi05LjQsOC4yCgkJYy00LjgsMC42LTktMi41LTEyLTUuOWMtMS41LTEuNy00LjItNC44LTUuMy02LjFjLTAuOC0wLjktMi4xLTAuNS0zLjIsMC4xYy0xLjcsMS0xMi40LDguNC0xMy45LDkuNWMtMC44LDAuOC0xLDEuNS0wLjQsMi40CgkJYzIuMSwzLjUsNC42LDcuMyw3LjYsMTAuOGMzLjEsMy43LDcuMiw2LjYsMTEuNiw4LjdjMTQsNi42LDMxLjksMi40LDQxLjQtOS43QzEwMS4xLDgxLjQsMTAwLjEsNjMuNiw4OC44LDUyLjd6Ii8+Cgk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjE0LjcsMS4xYy0xOS4xLDAtMzQuNywxNS4zLTM0LjcsMzQuMXYzOC4yYzAsMTguOCwxNS42LDM0LjEsMzQuNywzNC4xYzE5LjEsMCwzNC43LTE1LjMsMzQuNy0zNC4xVjM1LjIKCQlDMjQ5LjQsMTYuNCwyMzMuOSwxLjEsMjE0LjcsMS4xeiBNMjAzLjYsMzQuMWMwLTYsNS0xMSwxMS4yLTExYzYuMiwwLDExLjIsNC45LDExLjIsMTF2NDEuNGMwLDYtNSwxMS0xMS4yLDExCgkJYy02LjEsMC0xMS4yLTQuOS0xMS4yLTExVjM0LjF6Ii8+Cgk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTcxLjUsNTYuOGMtNy44LTE5LjItMzMuOC0yMy00My41LTE2LjVjMC4zLTIuNSwyLjItMTUuNCwyLjUtMThjLTAuNCwwLDI4LjUsMCwzMi44LDAKCQljMS4xLDAsMi0wLjcsMi4xLTEuN2MwLjItMy4yLDAtMTIuOSwwLTE2LjljMC0xLjMtMC41LTEuOS0yLjEtMS45Yy0xMC44LDAtMzYuNi0wLjEtNDcuNC0wLjFjLTIuNiwwLTIuOSwxLjgtMy4yLDMuNwoJCWMtMSw2LjUtNy45LDUwLjEtOC4xLDUxLjRjLTAuMSwxLjMsMC4xLDEuOCwxLjQsMi42YzMuNCwxLjYsMTAuOSw0LjcsMTIuNSw1LjRjMS44LDAuOCwyLjgsMS42LDQuNS0wLjNjNC41LTQuOSw2LjQtNywxMC4xLTcuOQoJCWM1LjEtMS4yLDExLDAuMSwxNC42LDMuOGMzLjcsMy43LDQuNiwxMC45LDMsMTUuNWMtMS40LDQtNC4yLDcuNi0xMC4yLDguM2MtNiwwLjgtMTEuNC0wLjgtMTYuNS00LjZjLTEuOS0xLjQtNC40LTMuMy02LTQuOAoJCWMtMS41LTEuMy0yLjUtMC44LTQuNiwxLjRjLTIuOSwzLTcuMiw4LjEtMTAsMTAuOWMtMS40LDEuNC0xLjUsMi40LTAuMSwzLjljMy4yLDMuNSw2LjUsNi4zLDEwLjgsOS4zYzguNSw1LjksMjAuNCw3LjksMzAuNyw2LjIKCQljOS0xLjUsMTctNi40LDIyLjUtMTMuMmM1LTYuMiw2LjktMTMuNiw3LTIxLjJDMTc0LjMsNjcuNCwxNzQuMiw2My4zLDE3MS41LDU2Ljh6Ii8+Cgk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMzkuNiw1OC4zYzAtMy42LDAtMTEuMywwLTEyLjFjMC0xLjYtMC44LTIuOC0yLTIuOGMtMC44LDAtMTIuMywwLTEyLjMsMFYyOS43YzAtMS4xLTAuOC0yLjItMS45LTIuNQoJCWMtMS4xLTAuMy0yLjQsMC4xLTMuMSwxTDIuOCw1MC43Yy0wLjcsMC45LTAuNywyLjEsMCwzbDE3LjQsMjIuN2MwLjUsMC43LDEuNCwxLjEsMi4yLDEuMWMwLjMsMCwwLjYsMCwwLjgtMC4xCgkJYzEuMS0wLjMsMS45LTEuNCwxLjktMi41VjYxLjVjMCwwLDEwLDAsMTEuMywwQzM4LjgsNjEuNSwzOS42LDYwLDM5LjYsNTguM3oiLz4KPC9nPgo8L3N2Zz4K);
+        background-position: left center;
+        background-repeat: no-repeat;
+        display: inline-block;
+        height: 0.77em;
+        text-indent: -9999px;
+        vertical-align: middle;
+        width: 48px;
+        height: 20px;
+      }
+      .logo-cont {
+        background-color: #0f81e8;
+        border-radius: 0.5rem;
+        display: inline-block;
+        padding: 11px 8px 13px 8px;
+      }
+      @media screen and (min-width: 880px) {
+        body {
+          background: url(https://s3.amazonaws.com/s3.350.org/images/ak-bg-2012-1.jpg)
+            repeat fixed center center #087dae;
+          background-size: cover;
+          font-size: 20px;
+        }
+        .box {
+          margin: 30px auto 50px;
+          width: 820px;
+          padding: 50px;
+        }
       }
     </style>
   </head>
   <body>
-    ::CLOUDFLARE_ERROR_500S_BOX::
-    
-    <div class="info">
-      Cloudflare Ray ID: ::RAY_ID::<br />
-      Your IP: ::CLIENT_IP::<br />
-      Performance & security by <a href="https://www.cloudflare.com/en-gb/5xx-error-landing/" target="_blank">Cloudflare</a>
+    <div class="box">
+      <div class="logo-cont">
+        <div class="logo">350</div>
+      </div>
+      <h1>Sorry!</h1>
+      <h2>The 350 website is currently unavailable.</h2>
+      <p>
+        We're patching things up so we can get back to building a safer future
+        together. In the meantime, join the movement for climate justice on:
+      </p>
+      <ul class="socials">
+        <li>
+          <a
+            href="https://facebook.com/350.org"
+            target="_blank"
+            rel="nofollow"
+            class="bg-facebook-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 80 80"
+              width="30"
+              height="30"
+            >
+              <path
+                fill="#ffffff"
+                d="M28.4,77.9V41.1H20V30.1l8.4-2.2v-9.7C28.4,6,35.1,0,50.2,0c2.2,0,7,0.5,9.8,1.8v13.9c-1.5-0.7-3.9-1.9-8.1-1.9c-3.7,0-6.9,1.5-6.9,6.5v7.2h13.3v13.8H45V78L28.4,77.9z"
+              /></svg
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://instagram.com/350org"
+            target="_blank"
+            rel="nofollow"
+            class="bg-instagram-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              width="30"
+              height="30"
+            >
+              <path
+                fill="#ffffff"
+                d="M256,49.5c67.3,0,75.2,0.3,101.8,1.5c24.6,1.1,37.9,5.2,46.8,8.7c11.8,4.6,20.2,10,29,18.8
+                c8.8,8.8,14.3,17.2,18.8,29c3.4,8.9,7.6,22.2,8.7,46.8c1.2,26.6,1.5,34.5,1.5,101.8s-0.3,75.2-1.5,101.8
+                c-1.1,24.6-5.2,37.9-8.7,46.8c-4.6,11.8-10,20.2-18.8,29c-8.8,8.8-17.2,14.3-29,18.8c-8.9,3.4-22.2,7.6-46.8,8.7
+                c-26.6,1.2-34.5,1.5-101.8,1.5s-75.2-0.3-101.8-1.5c-24.6-1.1-37.9-5.2-46.8-8.7c-11.8-4.6-20.2-10-29-18.8
+                c-8.8-8.8-14.3-17.2-18.8-29c-3.4-8.9-7.6-22.2-8.7-46.8c-1.2-26.6-1.5-34.5-1.5-101.8s0.3-75.2,1.5-101.8
+                c1.1-24.6,5.2-37.9,8.7-46.8c4.6-11.8,10-20.2,18.8-29c8.8-8.8,17.2-14.3,29-18.8c8.9-3.4,22.2-7.6,46.8-8.7
+                C180.8,49.7,188.7,49.5,256,49.5 M256,4.1c-68.4,0-77,0.3-103.9,1.5C125.3,6.8,107,11.1,91,17.3c-16.6,6.4-30.6,15.1-44.6,29.1
+                c-14,14-22.6,28.1-29.1,44.6c-6.2,16-10.5,34.3-11.7,61.2C4.4,179,4.1,187.6,4.1,256c0,68.4,0.3,77,1.5,103.9
+                c1.2,26.8,5.5,45.1,11.7,61.2c6.4,16.6,15.1,30.6,29.1,44.6c14,14,28.1,22.6,44.6,29.1c16,6.2,34.3,10.5,61.2,11.7
+                c26.9,1.2,35.4,1.5,103.9,1.5s77-0.3,103.9-1.5c26.8-1.2,45.1-5.5,61.2-11.7c16.6-6.4,30.6-15.1,44.6-29.1
+                c14-14,22.6-28.1,29.1-44.6c6.2-16,10.5-34.3,11.7-61.2c1.2-26.9,1.5-35.4,1.5-103.9s-0.3-77-1.5-103.9
+                c-1.2-26.8-5.5-45.1-11.7-61.2c-6.4-16.6-15.1-30.6-29.1-44.6c-14-14-28.1-22.6-44.6-29.1c-16-6.2-34.3-10.5-61.2-11.7
+                C333,4.4,324.4,4.1,256,4.1L256,4.1z"
+              />
+              <path
+                fill="#ffffff"
+                d="M256,126.6c-71.4,0-129.4,57.9-129.4,129.4S184.6,385.4,256,385.4S385.4,327.4,385.4,256
+                S327.4,126.6,256,126.6z M256,340c-46.4,0-84-37.6-84-84s37.6-84,84-84c46.4,0,84,37.6,84,84S302.4,340,256,340z"
+              />
+              <circle fill="#ffffff" cx="390.5" cy="121.5" r="30.2" /></svg
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/350org"
+            target="_blank"
+            rel="nofollow"
+            class="bg-youtube-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              width="30"
+              height="30"
+            >
+              <path
+                fill="#ffffff"
+                d="M255,79C15,79,8,70,8,252c0,184,12,174,245,174c243,0,251,7,251-168C504,65,495,79,255,79z
+                M191,333.8V162.2l163,84.6L191,333.8z"
+              /></svg
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://bsky.app/profile/350.org"
+            target="_blank"
+            rel="nofollow"
+            class="bg-bluesky-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -3.268 64 68.414"
+              width="30"
+              height="30"
+            >
+              <path
+                fill="#ffffff"
+                d="M13.873 3.805C21.21 9.332 29.103 20.537 32 26.55v15.882c0-.338-.13.044-.41.867-1.512 4.456-7.418 21.847-20.923 7.944-7.111-7.32-3.819-14.64 9.125-16.85-7.405 1.264-15.73-.825-18.014-9.015C1.12 23.022 0 8.51 0 6.55 0-3.268 8.579-.182 13.873 3.805zm36.254 0C42.79 9.332 34.897 20.537 32 26.55v15.882c0-.338.13.044.41.867 1.512 4.456 7.418 21.847 20.923 7.944 7.111-7.32 3.819-14.64-9.125-16.85 7.405 1.264 15.73-.825 18.014-9.015C62.88 23.022 64 8.51 64 6.55c0-9.818-8.578-6.732-13.873-2.745z"
+              /></svg
+          ></a>
+        </li>
+      </ul>
+      <div>
+        ::CLOUDFLARE_ERROR_500S_BOX::
+      </div>
     </div>
   </body>
 </html>
