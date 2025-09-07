@@ -109,12 +109,24 @@
         display: inline-block;
         padding: 11px 8px 13px 8px;
       }
-      .error-details {
+      .error-details, .cf-error-details {
         background: #c6c6c6;
         padding: 2px 10px 9px;
         font-size: 16px;
         margin-top: 37px;
         border-radius: 3px;
+      }
+      .error-details h2,
+      .cf-error-details h1 {
+        font-size: 19px;
+        font-family: ff-din-round-web-pro-1, ff-din-round-web-pro-2, Tahoma, sans-serif;
+        font-weight: bold;
+        margin: 19px 0;
+        top: 0;
+        line-height: 28.5px;
+      }
+      .tech-details {
+        font-size: 14px;
       }
       @media screen and (min-width: 880px) {
         body {
@@ -238,6 +250,11 @@
       <div class="error-details">
         <h3>Request Limit Reached</h3>
         <p>You've made too many requests in a short time, so we've temporarily slowed things down. This is a protective measure to ensure the website stays fast and available for everyone. Please wait a minute or two, then try again. The restriction will lift automatically.</p>
+
+        <div class="tech-details">
+          <p>Ray ID: ::RAY_ID::</p>
+        </div>
+
       </div>
     </div>
   </body>
